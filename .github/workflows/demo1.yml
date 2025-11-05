@@ -3,6 +3,14 @@ on:
   pull_request:
     types: opened
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # matches dev-1, dev-feature, etc.
+      #  ** matches anything, including /sub-directories
+      - 'feature/**' # matches feature/one, feature/two/sub-feature, etc.
+    paths-ignore:
+      - '.github/workflows/*' # ignore changes to workflow files
 jobs:
   deploy:
     runs-on: ubuntu-latest
